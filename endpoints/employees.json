@@ -5,7 +5,9 @@
         "method": "GET",
         "sql": "SELECT e.*, d.name_dep, d.city, b.name_emp AS boss_name FROM employees e LEFT JOIN departments d ON d.department_id = e.department_id LEFT JOIN employees b ON b.employee_id = e.boss_id",
         "auth_required": false,
-        "allowed_roles": ["*"]
+        "allowed_roles": [
+            "*"
+        ]
     },
     "getByIdWithDetails": {
         "description": "An employee by its primary key, with the name and city of its department and the name of its boss",
@@ -13,6 +15,28 @@
         "method": "GET",
         "sql": "SELECT e.*, d.name_dep, d.city, b.name_emp AS boss_name FROM employees e LEFT JOIN departments d ON d.department_id = e.department_id LEFT JOIN employees b ON b.employee_id = e.boss_id WHERE e.employee_id = $employee_id",
         "auth_required": false,
-        "allowed_roles": ["*"]
+        "allowed_roles": [
+            "*"
+        ]
+    },
+    "endContract": {
+        "description": "RN07: ends the contract of an employee (its end date, today), only by its boss or, without boss, by the employee itself",
+        "route": "/employees/$employee_id/end-contract",
+        "method": "PUT",
+        "sql": "UPDATE employees SET end_date = CURDATE() WHERE employee_id = $employee_id AND end_date IS NULL AND (boss_id = $loggedId OR (boss_id IS NULL AND employee_id = $loggedId))",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ]
+    },
+    "delete": {
+        "description": "RN07: deletes an employee, only by its boss or, without boss, by the employee itself",
+        "route": "/employees/$employee_id",
+        "method": "DELETE",
+        "sql": "DELETE FROM employees WHERE employee_id = $employee_id AND (boss_id = $loggedId OR (boss_id IS NULL AND employee_id = $loggedId))",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ]
     }
 }

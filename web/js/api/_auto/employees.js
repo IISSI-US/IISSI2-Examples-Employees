@@ -26,7 +26,7 @@ const employeesAPI_auto = {
         let response = await axios.put(`${BASE_URL}/employees/${employee_id}`, formData, requestOptions);
         return response.data;
     },
-    // Deletes an existing entry in 'employees' by its primary key
+    // RN07: deletes an employee, only by its boss or, without boss, by the employee itself
     delete: async function (employee_id) {
         let response = await axios.delete(`${BASE_URL}/employees/${employee_id}`, requestOptions);
         return response.data;
@@ -39,6 +39,11 @@ const employeesAPI_auto = {
     // An employee by its primary key, with the name and city of its department and the name of its boss
     getByIdWithDetails: async function (employee_id) {
         let response = await axios.get(`${BASE_URL}/employees/with-details/${employee_id}`, requestOptions);
+        return response.data;
+    },
+    // RN07: ends the contract of an employee (its end date, today), only by its boss or, without boss, by the employee itself
+    endContract: async function (employee_id) {
+        let response = await axios.put(`${BASE_URL}/employees/${employee_id}/end-contract`, null, requestOptions);
         return response.data;
     },
 };

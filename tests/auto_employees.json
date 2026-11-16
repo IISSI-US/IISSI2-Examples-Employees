@@ -82,12 +82,20 @@
         "description": "DELETE /employees/$employee_id: a row that does not exist is a 404",
         "endpoint": "DELETE /employees/$employee_id",
         "DELETE /employees/999999999": null,
+        "as": 1,
         "expect": 404
+    },
+    "employees_delete_no_session": {
+        "description": "DELETE /employees/$employee_id: without a session is a 401",
+        "endpoint": "DELETE /employees/$employee_id",
+        "DELETE /employees/2": null,
+        "expect": 401
     },
     "employees_delete_ok": {
         "description": "DELETE /employees/$employee_id: deletes a row that no other row references",
         "endpoint": "DELETE /employees/$employee_id",
         "DELETE /employees/2": null,
+        "as": 1,
         "expect": 200
     },
     "employees_getById_ok": {
@@ -172,6 +180,26 @@
         },
         "as": 4,
         "expect": 403
+    },
+    "employees_endContract_ok": {
+        "description": "PUT /employees/$employee_id/end-contract: updates a row (with its current values)",
+        "endpoint": "PUT /employees/$employee_id/end-contract",
+        "PUT /employees/1/end-contract": {},
+        "as": 1,
+        "expect": 200
+    },
+    "employees_endContract_not_found": {
+        "description": "PUT /employees/$employee_id/end-contract: a row that does not exist is a 404",
+        "endpoint": "PUT /employees/$employee_id/end-contract",
+        "PUT /employees/999999999/end-contract": {},
+        "as": 1,
+        "expect": 404
+    },
+    "employees_endContract_no_session": {
+        "description": "PUT /employees/$employee_id/end-contract: without a session is a 401",
+        "endpoint": "PUT /employees/$employee_id/end-contract",
+        "PUT /employees/1/end-contract": {},
+        "expect": 401
     },
     "employees_getAllWithDetails_ok": {
         "description": "GET /employees/with-details: returns the current rows",

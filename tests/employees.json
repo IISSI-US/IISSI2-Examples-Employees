@@ -1,0 +1,31 @@
+{
+    "employees_rn07_end_contract_boss": {
+        "description": "RN07: el jefe da de baja a su empleado (Pedro a Daniel)",
+        "PUT /employees/6/end-contract": null,
+        "as": 1,
+        "expect": 200
+    },
+    "employees_rn07_end_contract_not_boss": {
+        "description": "RN07: un empleado que no es su jefe no puede darlo de baja (Daniel a Eva)",
+        "PUT /employees/7/end-contract": null,
+        "as": 6,
+        "expect": 404
+    },
+    "employees_rn07_delete_self_no_boss": {
+        "description": "RN07: un empleado sin jefe se borra a sí mismo (Eva)",
+        "DELETE /employees/7": null,
+        "as": 7,
+        "expect": 200
+    },
+    "employees_rn07_delete_not_boss": {
+        "description": "RN07: un empleado que no es su jefe no puede borrarlo (Pedro a Jose, que no tiene jefe)",
+        "DELETE /employees/2": null,
+        "as": 1,
+        "expect": 404
+    },
+    "employees_rn07_delete_no_session": {
+        "description": "RN07: sin sesión no se puede borrar a nadie",
+        "DELETE /employees/6": null,
+        "expect": 401
+    }
+}

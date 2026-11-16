@@ -44,6 +44,26 @@
       <div id="team"></div>
     </div>
     <!-- #endregion -->
+
+    <!-- #region dialogos -->
+    <dialog id="end-contract-dialog" class="ez-dialog" aria-labelledby="end-contract-dialog-title">
+      <h3 id="end-contract-dialog-title">¿Dar de baja al empleado?</h3>
+      <p>Su contrato terminará hoy.</p>
+      <form method="dialog" class="ez-dialog__actions">
+        <button class="ez-button ez-button--secondary" type="submit" value="cancel">Cancelar</button>
+        <button class="ez-button" type="submit" value="confirm">Dar de baja</button>
+      </form>
+    </dialog>
+
+    <dialog id="delete-dialog" class="ez-dialog" aria-labelledby="delete-dialog-title">
+      <h3 id="delete-dialog-title">¿Borrar el empleado?</h3>
+      <p>El empleado se borrará de la base de datos.</p>
+      <form method="dialog" class="ez-dialog__actions">
+        <button class="ez-button ez-button--secondary" type="submit" value="cancel">Cancelar</button>
+        <button class="ez-button ez-button--danger" type="submit" value="confirm">Borrar</button>
+      </form>
+    </dialog>
+    <!-- #endregion -->
   </main>
 </body>
 </html>

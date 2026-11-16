@@ -64,15 +64,5 @@
             "password",
             "position"
         ]
-    },
-    "delete": {
-        "description": "Deletes an existing entry in 'employees' by its primary key",
-        "route": "/employees/$employee_id",
-        "method": "DELETE",
-        "sql": "DELETE FROM employees WHERE employee_id = $employee_id",
-        "auth_required": false,
-        "allowed_roles": [
-            "*"
-        ]
     }
 }
