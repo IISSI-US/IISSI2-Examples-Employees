@@ -35,10 +35,11 @@
   <!-- #endregion -->
 
   <main class="ez-container">
-    <h1>Nuevo empleado</h1>
+    <h1 id="form-title">Nuevo empleado</h1>
 
     <!-- #region formulario -->
-    <form>
+    <div id="errors"></div>
+    <form id="employee-form">
       <div class="ez-field">
         <label for="name_emp">Nombre</label>
         <input type="text" id="name_emp" name="name_emp" maxlength="64" required>
@@ -48,7 +49,7 @@
         <label for="email">Correo electrónico</label>
         <input type="email" id="email" name="email" maxlength="255" required>
       </div>
-      <div class="ez-field">
+      <div class="ez-field" id="password-field">
         <label for="password">Contraseña</label>
         <input type="password" id="password" name="password" required>
       </div>
@@ -64,18 +65,12 @@
         <label for="department_id">Departamento</label>
         <select id="department_id" name="department_id">
           <option value="">Sin departamento</option>
-          <option value="1">Arte (Cádiz)</option>
-          <option value="2">Historia</option>
-          <option value="3">Informática (Sevilla)</option>
         </select>
       </div>
       <div class="ez-field">
         <label for="boss_id">Jefe</label>
         <select id="boss_id" name="boss_id">
           <option value="">Sin jefe</option>
-          <option value="1">Pedro</option>
-          <option value="2">Jose</option>
-          <option value="3">Lola</option>
         </select>
       </div>
       <div class="ez-field">
