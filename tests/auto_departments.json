@@ -1,0 +1,70 @@
+{
+    "departments_getAll_ok": {
+        "description": "GET /departments: returns the current rows",
+        "endpoint": "GET /departments",
+        "GET /departments": null,
+        "expect": 200
+    },
+    "departments_create_ok": {
+        "description": "POST /departments: creates a row",
+        "endpoint": "POST /departments",
+        "POST /departments": {
+            "name_dep": "Arte",
+            "city": "Cádiz-t1"
+        },
+        "expect": 201
+    },
+    "departments_create_missing_param": {
+        "description": "POST /departments: without 'name_dep' is a 400",
+        "endpoint": "POST /departments",
+        "POST /departments": {
+            "city": "Cádiz-t1"
+        },
+        "expect": {
+            "status": 400,
+            "message": "name_dep"
+        }
+    },
+    "departments_delete_not_found": {
+        "description": "DELETE /departments/$department_id: a row that does not exist is a 404",
+        "endpoint": "DELETE /departments/$department_id",
+        "DELETE /departments/999999999": null,
+        "expect": 404
+    },
+    "departments_delete_ok": {
+        "description": "DELETE /departments/$department_id: deletes a row that no other row references",
+        "endpoint": "DELETE /departments/$department_id",
+        "DELETE /departments/3": null,
+        "expect": 200
+    },
+    "departments_getById_ok": {
+        "description": "GET /departments/$department_id: returns the current rows",
+        "endpoint": "GET /departments/$department_id",
+        "GET /departments/1": null,
+        "expect": 200
+    },
+    "departments_getById_not_found": {
+        "description": "GET /departments/$department_id: a row that does not exist is a 404",
+        "endpoint": "GET /departments/$department_id",
+        "GET /departments/999999999": null,
+        "expect": 404
+    },
+    "departments_update_ok": {
+        "description": "PUT /departments/$department_id: updates a row (with its current values)",
+        "endpoint": "PUT /departments/$department_id",
+        "PUT /departments/1": {
+            "name_dep": "Arte",
+            "city": "Cádiz"
+        },
+        "expect": 200
+    },
+    "departments_update_not_found": {
+        "description": "PUT /departments/$department_id: a row that does not exist is a 404",
+        "endpoint": "PUT /departments/$department_id",
+        "PUT /departments/999999999": {
+            "name_dep": "Arte",
+            "city": "Cádiz"
+        },
+        "expect": 404
+    }
+}

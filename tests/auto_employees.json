@@ -1,0 +1,102 @@
+{
+    "employees_getAll_ok": {
+        "description": "GET /employees: returns the current rows",
+        "endpoint": "GET /employees",
+        "GET /employees": null,
+        "expect": 200
+    },
+    "employees_create_ok": {
+        "description": "POST /employees: creates a row",
+        "endpoint": "POST /employees",
+        "POST /employees": {
+            "department_id": 1,
+            "boss_id": null,
+            "name_emp": "Pedro-t1",
+            "start_date": "2017-09-15",
+            "end_date": null,
+            "salary": 2300.0,
+            "fee": 0.2,
+            "email": "t1.pedro@company.com",
+            "password": "Test-1234",
+            "position": "Manager"
+        },
+        "expect": 201
+    },
+    "employees_create_missing_param": {
+        "description": "POST /employees: without 'name_emp' is a 400",
+        "endpoint": "POST /employees",
+        "POST /employees": {
+            "department_id": 1,
+            "boss_id": null,
+            "start_date": "2017-09-15",
+            "end_date": null,
+            "salary": 2300.0,
+            "fee": 0.2,
+            "email": "t1.pedro@company.com",
+            "password": "Test-1234",
+            "position": "Manager"
+        },
+        "expect": {
+            "status": 400,
+            "message": "name_emp"
+        }
+    },
+    "employees_delete_not_found": {
+        "description": "DELETE /employees/$employee_id: a row that does not exist is a 404",
+        "endpoint": "DELETE /employees/$employee_id",
+        "DELETE /employees/999999999": null,
+        "expect": 404
+    },
+    "employees_delete_ok": {
+        "description": "DELETE /employees/$employee_id: deletes a row that no other row references",
+        "endpoint": "DELETE /employees/$employee_id",
+        "DELETE /employees/2": null,
+        "expect": 200
+    },
+    "employees_getById_ok": {
+        "description": "GET /employees/$employee_id: returns the current rows",
+        "endpoint": "GET /employees/$employee_id",
+        "GET /employees/1": null,
+        "expect": 200
+    },
+    "employees_getById_not_found": {
+        "description": "GET /employees/$employee_id: a row that does not exist is a 404",
+        "endpoint": "GET /employees/$employee_id",
+        "GET /employees/999999999": null,
+        "expect": 404
+    },
+    "employees_update_ok": {
+        "description": "PUT /employees/$employee_id: updates a row (with its current values)",
+        "endpoint": "PUT /employees/$employee_id",
+        "PUT /employees/1": {
+            "department_id": 1,
+            "boss_id": null,
+            "name_emp": "Pedro",
+            "start_date": "2017-09-15",
+            "end_date": null,
+            "salary": 2300.0,
+            "fee": 0.2,
+            "email": "pedro@company.com",
+            "password": "Test-1234",
+            "position": "Manager"
+        },
+        "expect": 200
+    },
+    "employees_update_not_found": {
+        "description": "PUT /employees/$employee_id: a row that does not exist is a 404",
+        "endpoint": "PUT /employees/$employee_id",
+        "PUT /employees/999999999": {
+            "department_id": 1,
+            "boss_id": null,
+            "name_emp": "Pedro",
+            "start_date": "2017-09-15",
+            "end_date": null,
+            "salary": 2300.0,
+            "fee": 0.2,
+            "email": "pedro@company.com",
+            "password": "Test-1234",
+            "position": "Manager"
+        },
+        "expect": 404
+    }
+}
