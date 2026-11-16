@@ -58,6 +58,13 @@ async function loadEmployee() {
 // El motivo que da la API, con el requisito: las restricciones UNIQUE (RN01, el nombre repetido,
 // y el correo repetido) se reconocen por su nombre; los triggers (RN02, RN04, RN06) ya lo traen
 function apiErrorMessage(error) {
+  let status = error.response?.status;
+  if (status === 401) {
+    return "Hay que iniciar sesión para guardar un empleado";
+  }
+  if (status === 403) {
+    return "Solo los empleados con puesto CEO o Manager pueden dar de alta y editar empleados";
+  }
   let message = error.response?.data?.message ?? "No se han podido guardar los datos del empleado";
   if (message.includes("uq_employees_rn01_name")) {
     return "RN01: Ya hay un empleado con ese nombre";
@@ -86,6 +93,7 @@ async function handleSubmit(event) {
   }
 
   try {
+    // Sin sesión, 401; con otro puesto, 403 (solo CEO y Manager)
     if (employeeId === null) {
       let result = await employeesAPI_auto.create(formData);  // POST /api/employees
       window.location.href = `employee-detail.html?employeeId=${result.lastId}`;

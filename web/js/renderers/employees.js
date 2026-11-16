@@ -55,8 +55,9 @@ const employeeRenderer = {
     return parseHTML(html);
   },
 
-  // La ficha de un empleado (su nombre es el título de la página): sus datos y los botones para editarlo, darlo de baja y borrarlo
-  asDetails: function (employee) {
+  // La ficha de un empleado (su nombre es el título de la página): sus datos y los botones de lo que puede hacer el usuario de la sesión
+  // (actions: canEdit, editarlo; canEnd, darlo de baja y borrarlo)
+  asDetails: function (employee, actions) {
     let boss = "Sin jefe";
     if (employee.boss_id !== null) {
       boss = `<a href="employee-detail.html?employeeId=${employee.boss_id}">${employee.boss_name}</a>`;
@@ -64,6 +65,16 @@ const employeeRenderer = {
     let contract = `Desde el ${formatDate(employee.start_date)}`;
     if (employee.end_date !== null) {
       contract += ` hasta el ${formatDate(employee.end_date)}`;
+    }
+    let buttons = "";
+    if (actions.canEdit) {
+      buttons += `<a class="ez-button ez-button--secondary" href="employee-form.html?employeeId=${employee.employee_id}">Editar</a> `;
+    }
+    if (actions.canEnd) {
+      if (employee.end_date === null) {
+        buttons += '<button id="end-contract-button" class="ez-button ez-button--secondary" type="button">Dar de baja</button> ';
+      }
+      buttons += '<button id="delete-button" class="ez-button ez-button--danger" type="button">Borrar</button>';
     }
     let html = `<div>
       <dl class="app-employee-data">
@@ -82,11 +93,7 @@ const employeeRenderer = {
         <dt>Contrato</dt>
         <dd>${contract}</dd>
       </dl>
-      <p>
-        <a class="ez-button ez-button--secondary" href="employee-form.html?employeeId=${employee.employee_id}">Editar</a>
-        <button id="end-contract-button" class="ez-button ez-button--secondary" type="button">Dar de baja</button>
-        <button id="delete-button" class="ez-button ez-button--danger" type="button">Borrar</button>
-      </p>
+      <p>${buttons}</p>
     </div>`;
     return parseHTML(html);
   },

@@ -4,6 +4,8 @@ import { setupNavbar } from "./navbar.js";
 import { employeesAPI_auto } from "./api/_auto/employees.js";
 import { employeeRenderer } from "./renderers/employees.js";
 import { messageRenderer } from "./renderers/messages.js";
+import { sessionManager } from "./utils/session.js";
+import { permissions } from "./permissions.js";
 
 // #region employeeId
 // El empleado de la vista, del parámetro employeeId de la URL (employee-detail.html?employeeId=6)
@@ -19,8 +21,11 @@ async function main() {
   try {
     let rows = await employeesAPI_auto.getByIdWithDetails(employeeId);
     let employee = rows[0];
+    // Los botones de la ficha, según lo que puede hacer el usuario de la sesión
+    let user = sessionManager.getUser();
+    let actions = { canEdit: permissions.canManageEmployees(user), canEnd: false };
     document.getElementById("employee-name").textContent = employee.name_emp;
-    document.getElementById("employee-details").replaceChildren(employeeRenderer.asDetails(employee));
+    document.getElementById("employee-details").replaceChildren(employeeRenderer.asDetails(employee, actions));
     // Los empleados a su cargo: los de la lista (GET /api/employees/with-details) cuyo jefe es él
     let employees = await employeesAPI_auto.getAllWithDetails();
     let team = employees.filter((other) => other.boss_id === employee.employee_id);

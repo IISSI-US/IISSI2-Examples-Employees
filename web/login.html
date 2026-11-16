@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <!-- #region cabecera -->
+  <title>Iniciar sesión · Empleados</title>
+  <script src="ez-ui/js/theme-init.js"></script>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/libs/axios.min.js"></script>
+  <script src="js/login.js" type="module"></script>
+  <!-- #endregion -->
+</head>
+<body>
+  <!-- #region navbar -->
+  <nav class="ez-navbar" aria-label="Principal">
+    <div class="ez-container ez-navbar__inner">
+      <a class="ez-navbar__brand" href="index.html">Gestión de empleados</a>
+      <button class="ez-button ez-button--secondary ez-navbar__toggle" type="button"
+              aria-expanded="false" aria-controls="navbar-links">Menú</button>
+      <ul id="navbar-links" class="ez-navbar__links">
+        <li><a href="index.html">Empleados</a></li>
+        <li id="navbar-new"><a href="employee-form.html">Nuevo empleado</a></li>
+        <li id="navbar-session"></li>
+        <li>
+          <button class="ez-button ez-button--secondary ez-theme-toggle" type="button"
+                  aria-label="Cambiar de tema" title="Cambiar de tema">
+            <span class="ez-theme-toggle__to-dark">Oscuro</span>
+            <span class="ez-theme-toggle__to-light">Claro</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- #endregion -->
+
+  <main class="ez-container">
+    <h1>Iniciar sesión</h1>
+
+    <!-- #region formulario -->
+    <div id="errors"></div>
+    <form id="login-form">
+      <div class="ez-field">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required autocomplete="username">
+      </div>
+      <div class="ez-field">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="ez-button">Iniciar sesión</button>
+    </form>
+    <!-- #endregion -->
+  </main>
+</body>
+</html>

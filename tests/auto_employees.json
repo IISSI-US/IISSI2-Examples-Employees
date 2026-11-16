@@ -20,6 +20,7 @@
             "password": "Test-1234",
             "position": "Manager"
         },
+        "as": 1,
         "expect": 201
     },
     "employees_create_missing_param": {
@@ -36,10 +37,46 @@
             "password": "Test-1234",
             "position": "Manager"
         },
+        "as": 1,
         "expect": {
             "status": 400,
             "message": "name_emp"
         }
+    },
+    "employees_create_no_session": {
+        "description": "POST /employees: without a session is a 401",
+        "endpoint": "POST /employees",
+        "POST /employees": {
+            "department_id": 1,
+            "boss_id": null,
+            "name_emp": "Pedro-t1",
+            "start_date": "2017-09-15",
+            "end_date": null,
+            "salary": 2300.0,
+            "fee": 0.2,
+            "email": "t1.pedro@company.com",
+            "password": "Test-1234",
+            "position": "Manager"
+        },
+        "expect": 401
+    },
+    "employees_create_wrong_role": {
+        "description": "POST /employees: with the role 'Programmer' is a 403",
+        "endpoint": "POST /employees",
+        "POST /employees": {
+            "department_id": 1,
+            "boss_id": null,
+            "name_emp": "Pedro-t1",
+            "start_date": "2017-09-15",
+            "end_date": null,
+            "salary": 2300.0,
+            "fee": 0.2,
+            "email": "t1.pedro@company.com",
+            "password": "Test-1234",
+            "position": "Manager"
+        },
+        "as": 4,
+        "expect": 403
     },
     "employees_delete_not_found": {
         "description": "DELETE /employees/$employee_id: a row that does not exist is a 404",
@@ -80,6 +117,7 @@
             "password": "Test-1234",
             "position": "Manager"
         },
+        "as": 1,
         "expect": 200
     },
     "employees_update_not_found": {
@@ -97,7 +135,43 @@
             "password": "Test-1234",
             "position": "Manager"
         },
+        "as": 1,
         "expect": 404
+    },
+    "employees_update_no_session": {
+        "description": "PUT /employees/$employee_id: without a session is a 401",
+        "endpoint": "PUT /employees/$employee_id",
+        "PUT /employees/1": {
+            "department_id": 1,
+            "boss_id": null,
+            "name_emp": "Pedro-t1",
+            "start_date": "2017-09-15",
+            "end_date": null,
+            "salary": 2300.0,
+            "fee": 0.2,
+            "email": "t1.pedro@company.com",
+            "password": "Test-1234",
+            "position": "Manager"
+        },
+        "expect": 401
+    },
+    "employees_update_wrong_role": {
+        "description": "PUT /employees/$employee_id: with the role 'Programmer' is a 403",
+        "endpoint": "PUT /employees/$employee_id",
+        "PUT /employees/1": {
+            "department_id": 1,
+            "boss_id": null,
+            "name_emp": "Pedro-t1",
+            "start_date": "2017-09-15",
+            "end_date": null,
+            "salary": 2300.0,
+            "fee": 0.2,
+            "email": "t1.pedro@company.com",
+            "password": "Test-1234",
+            "position": "Manager"
+        },
+        "as": 4,
+        "expect": 403
     },
     "employees_getAllWithDetails_ok": {
         "description": "GET /employees/with-details: returns the current rows",

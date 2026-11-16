@@ -24,9 +24,10 @@
         "route": "/employees",
         "method": "POST",
         "sql": "INSERT INTO employees(department_id, boss_id, name_emp, start_date, end_date, salary, fee, email, password, position) VALUES ($department_id, $boss_id, $name_emp, $start_date, $end_date, $salary, $fee, $email, $password, $position)",
-        "auth_required": false,
+        "auth_required": true,
         "allowed_roles": [
-            "*"
+            "CEO",
+            "Manager"
         ],
         "request_body_params": [
             "department_id",
@@ -46,9 +47,10 @@
         "route": "/employees/$employee_id",
         "method": "PUT",
         "sql": "UPDATE employees SET department_id = $department_id, boss_id = $boss_id, name_emp = $name_emp, start_date = $start_date, end_date = $end_date, salary = $salary, fee = $fee, email = $email, password = $password, position = $position WHERE employee_id = $employee_id",
-        "auth_required": false,
+        "auth_required": true,
         "allowed_roles": [
-            "*"
+            "CEO",
+            "Manager"
         ],
         "request_body_params": [
             "department_id",
