@@ -4,9 +4,12 @@
   <meta charset="utf-8">
   <!-- #region cabecera -->
   <title>Empleados</title>
+  <script src="ez-ui/js/theme-init.js"></script>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
   <link rel="stylesheet" href="css/app.css">
+  <script src="js/libs/axios.min.js"></script>
+  <script src="js/index.js" type="module"></script>
   <!-- #endregion -->
 </head>
 <body>
@@ -14,9 +17,18 @@
   <nav class="ez-navbar" aria-label="Principal">
     <div class="ez-container ez-navbar__inner">
       <a class="ez-navbar__brand" href="index.html">Gestión de empleados</a>
-      <ul class="ez-navbar__links">
+      <button class="ez-button ez-button--secondary ez-navbar__toggle" type="button"
+              aria-expanded="false" aria-controls="navbar-links">Menú</button>
+      <ul id="navbar-links" class="ez-navbar__links">
         <li><a href="index.html" aria-current="page">Empleados</a></li>
         <li><a href="employee-form.html">Nuevo empleado</a></li>
+        <li>
+          <button class="ez-button ez-button--secondary ez-theme-toggle" type="button"
+                  aria-label="Cambiar de tema" title="Cambiar de tema">
+            <span class="ez-theme-toggle__to-dark">Oscuro</span>
+            <span class="ez-theme-toggle__to-light">Claro</span>
+          </button>
+        </li>
       </ul>
     </div>
   </nav>
@@ -30,70 +42,7 @@
     <!-- #endregion -->
 
     <!-- #region tabla -->
-    <div class="ez-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Departamento</th>
-            <th>Jefe</th>
-            <th class="ez-number">Salario</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><a href="employee-detail.html?employeeId=1">Pedro</a></td>
-            <td>Arte</td>
-            <td></td>
-            <td class="ez-number">2300.00 €</td>
-            <td>Activo</td>
-          </tr>
-          <tr>
-            <td><a href="employee-detail.html?employeeId=2">Jose</a></td>
-            <td>Arte</td>
-            <td></td>
-            <td class="ez-number">2500.00 €</td>
-            <td>Activo</td>
-          </tr>
-          <tr>
-            <td><a href="employee-detail.html?employeeId=3">Lola</a></td>
-            <td>Historia</td>
-            <td></td>
-            <td class="ez-number">2300.00 €</td>
-            <td>Activo</td>
-          </tr>
-          <tr>
-            <td><a href="employee-detail.html?employeeId=4">Luis</a></td>
-            <td>Arte</td>
-            <td>Pedro</td>
-            <td class="ez-number">1300.00 €</td>
-            <td><span class="ez-badge">De baja</span></td>
-          </tr>
-          <tr>
-            <td><a href="employee-detail.html?employeeId=5">Ana</a></td>
-            <td>Arte</td>
-            <td>Pedro</td>
-            <td class="ez-number">1300.00 €</td>
-            <td><span class="ez-badge">De baja</span></td>
-          </tr>
-          <tr>
-            <td><a href="employee-detail.html?employeeId=6">Daniel</a></td>
-            <td>Arte</td>
-            <td>Pedro</td>
-            <td class="ez-number">1500.00 €</td>
-            <td>Activo</td>
-          </tr>
-          <tr>
-            <td><a href="employee-detail.html?employeeId=7">Eva</a></td>
-            <td></td>
-            <td></td>
-            <td class="ez-number">1200.00 €</td>
-            <td>Activo</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div id="employees"></div>
     <!-- #endregion -->
   </main>
 </body>

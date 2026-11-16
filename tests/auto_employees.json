@@ -98,5 +98,23 @@
             "position": "Manager"
         },
         "expect": 404
+    },
+    "employees_getAllWithDetails_ok": {
+        "description": "GET /employees/with-details: returns the current rows",
+        "endpoint": "GET /employees/with-details",
+        "GET /employees/with-details": null,
+        "expect": 200
+    },
+    "employees_getByIdWithDetails_ok": {
+        "description": "GET /employees/with-details/$employee_id: returns the current rows",
+        "endpoint": "GET /employees/with-details/$employee_id",
+        "GET /employees/with-details/1": null,
+        "expect": 200
+    },
+    "employees_getByIdWithDetails_not_found": {
+        "description": "GET /employees/with-details/$employee_id: a row that does not exist is a 404",
+        "endpoint": "GET /employees/with-details/$employee_id",
+        "GET /employees/with-details/999999999": null,
+        "expect": 404
     }
 }

@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8">
   <!-- #region cabecera -->
-  <title>Daniel · Empleados</title>
+  <title>Empleado · Empleados</title>
+  <script src="ez-ui/js/theme-init.js"></script>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="ez-ui/css/ez-ui.css">
   <link rel="stylesheet" href="css/app.css">
+  <script src="js/libs/axios.min.js"></script>
+  <script src="js/employee-detail.js" type="module"></script>
   <!-- #endregion -->
 </head>
 <body>
@@ -14,9 +17,18 @@
   <nav class="ez-navbar" aria-label="Principal">
     <div class="ez-container ez-navbar__inner">
       <a class="ez-navbar__brand" href="index.html">Gestión de empleados</a>
-      <ul class="ez-navbar__links">
+      <button class="ez-button ez-button--secondary ez-navbar__toggle" type="button"
+              aria-expanded="false" aria-controls="navbar-links">Menú</button>
+      <ul id="navbar-links" class="ez-navbar__links">
         <li><a href="index.html">Empleados</a></li>
         <li><a href="employee-form.html">Nuevo empleado</a></li>
+        <li>
+          <button class="ez-button ez-button--secondary ez-theme-toggle" type="button"
+                  aria-label="Cambiar de tema" title="Cambiar de tema">
+            <span class="ez-theme-toggle__to-dark">Oscuro</span>
+            <span class="ez-theme-toggle__to-light">Claro</span>
+          </button>
+        </li>
       </ul>
     </div>
   </nav>
@@ -24,50 +36,11 @@
 
   <main class="ez-container">
     <!-- #region ficha -->
-    <h1>Pedro</h1>
+    <h1 id="employee-name"></h1>
     <!-- ez-split: la ficha y, al lado, los empleados a su cargo (en una pantalla estrecha, debajo) -->
     <div class="ez-split">
-      <div>
-        <dl class="app-employee-data">
-          <dt>Puesto</dt>
-          <dd>Manager</dd>
-          <dt>Correo electrónico</dt>
-          <dd><a href="mailto:pedro@company.com">pedro@company.com</a></dd>
-          <dt>Departamento</dt>
-          <dd>Arte (Cádiz)</dd>
-          <dt>Jefe</dt>
-          <dd>Sin jefe</dd>
-          <dt>Salario</dt>
-          <dd>2300.00 €</dd>
-          <dt>Comisión</dt>
-          <dd>20 %</dd>
-          <dt>Contrato</dt>
-          <dd>Desde el 15/09/2017</dd>
-        </dl>
-
-        <!-- #region acciones -->
-        <p>
-          <a class="ez-button ez-button--secondary" href="employee-form.html?employeeId=1">Editar</a>
-          <button class="ez-button ez-button--secondary" type="button">Dar de baja</button>
-          <button class="ez-button ez-button--danger" type="button">Borrar</button>
-        </p>
-        <!-- #endregion -->
-      </div>
-
-      <div>
-        <!-- #region a-su-cargo -->
-        <article class="ez-card">
-          <div class="ez-card__body">
-            <h3>A su cargo</h3>
-            <ul>
-              <li><a href="employee-detail.html?employeeId=4">Luis</a>, Programmer <span class="ez-badge">De baja</span></li>
-              <li><a href="employee-detail.html?employeeId=5">Ana</a>, Programmer <span class="ez-badge">De baja</span></li>
-              <li><a href="employee-detail.html?employeeId=6">Daniel</a>, Programmer</li>
-            </ul>
-          </div>
-        </article>
-        <!-- #endregion -->
-      </div>
+      <div id="employee-details"></div>
+      <div id="team"></div>
     </div>
     <!-- #endregion -->
   </main>

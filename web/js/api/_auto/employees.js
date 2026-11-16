@@ -31,6 +31,16 @@ const employeesAPI_auto = {
         let response = await axios.delete(`${BASE_URL}/employees/${employee_id}`, requestOptions);
         return response.data;
     },
+    // The employees with the name and city of their department and the name of their boss
+    getAllWithDetails: async function () {
+        let response = await axios.get(`${BASE_URL}/employees/with-details`, requestOptions);
+        return response.data;
+    },
+    // An employee by its primary key, with the name and city of its department and the name of its boss
+    getByIdWithDetails: async function (employee_id) {
+        let response = await axios.get(`${BASE_URL}/employees/with-details/${employee_id}`, requestOptions);
+        return response.data;
+    },
 };
 
 export { employeesAPI_auto };
